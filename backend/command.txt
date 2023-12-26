@@ -1,0 +1,2 @@
+To run celery beat use this -> celery -A send.celery beat --loglevel=info
+To run celery worker use this -> celery -A send.celery worker -l info -P eventlet
