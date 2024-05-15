@@ -11,7 +11,7 @@ from flask_jwt_extended import jwt_required,get_jwt_identity
 from flask_login import current_user
 from datetime import datetime
 from werkzeug.utils import secure_filename
-from flask_caching import Cache
+# from flask_caching import Cache
 from io import StringIO
 import csv
 import os
@@ -28,7 +28,7 @@ app.config['PRINCIPALS_USE_POLICY'] = True
 app.secret_key = 'bellothehello'
 
 CORS(app, resources={r'/*': {'origins': '*'}})
-cache = Cache(app, config={'CACHE_TYPE': 'redis', 'CACHE_REDIS_URL': 'redis://localhost:6379/0'})
+# cache = Cache(app, config={'CACHE_TYPE': 'redis', 'CACHE_REDIS_URL': 'redis://localhost:6379/0'})
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
@@ -520,7 +520,7 @@ def create_category():
         return jsonify(error=str(e)), 500
 
 @app.route('/api/categories', methods=['GET'])
-@cache.cached(timeout=30)
+# @cache.cached(timeout=30)
 def get_categories():
     try:
         categories = Category.query.all()
@@ -1083,7 +1083,7 @@ def buy_product():
         return jsonify({'error': 'An error occurred during purchase'}), 500
 
 @app.route('/purchase-history/<username>', methods=['GET'])
-@cache.cached(timeout=5)
+# @cache.cached(timeout=5)
 @jwt_required()
 def get_purchase_history(username):
     try:
