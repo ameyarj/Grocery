@@ -64,7 +64,6 @@ Flask-WTF
 flatbuffers
 fonttools
 frozenlist
-fxcmpy
 gast
 gitdb
 GitPython
